@@ -1,0 +1,70 @@
+POST http://192.168.18.100:8000/api/login
+Content-Type: application/json
+
+{
+  "username": "bpr_kn_dev_0002798",
+  "password": "password123"
+}
+
+###
+GET http://192.168.18.100:8000/api/office
+Content-Type: application/json
+Authorization: Bearer 161|v5zXSnM1KMzWkvjRNykg69By0LZ7yH7Ee1nwmeAR5a33708d
+
+
+###
+
+
+POST http://192.168.18.100:8000/api/create-reservation
+Content-Type: application/json
+Authorization: Bearer 159|KtqzpiXeHpW9XikKxqZEAntPXJ5P7hprwXNxCcQS75a11507
+
+{"branchId":"001","destinationService":"1","reason":"Keluhan","attendAtStart":"2023-10-18T07:00:02.224Z","attendAtEnd":"2023-10-18T08:00:02.224Z"}
+
+  ###
+### ===
+POST http://192.168.18.100:8000/api/change-password
+Content-Type: application/json
+Authorization: Bearer 159|KtqzpiXeHpW9XikKxqZEAntPXJ5P7hprwXNxCcQS75a11507
+
+{
+    "old_password" : "password123",
+    "new_password" : "12345678"
+}
+
+
+### ===
+GET http://192.168.18.100:8000/api/saving
+Content-Type: application/json
+Authorization: Bearer 203|n2D9uDIS3Z4cPQDRq8w5lxB7jgRPIlBQxVrgxqeC73bc42c4
+### ===
+GET http://192.168.18.100:8000/api/loan/00104010002479
+Content-Type: application/json
+Authorization: Bearer 203|n2D9uDIS3Z4cPQDRq8w5lxB7jgRPIlBQxVrgxqeC73bc42c4
+### ===
+GET http://192.168.18.100:8000/api/saving/history/00102070000180
+Content-Type: application/json
+Authorization: Bearer 203|n2D9uDIS3Z4cPQDRq8w5lxB7jgRPIlBQxVrgxqeC73bc42c4
+### ===
+GET http://192.168.18.100:8000/api/notification
+Content-Type: application/json
+Authorization: Bearer 203|n2D9uDIS3Z4cPQDRq8w5lxB7jgRPIlBQxVrgxqeC73bc42c4
+### ===
+GET http://192.168.18.100:8000/api/loan/bill/00104010000459
+Content-Type: application/json
+Authorization: Bearer 215|BXxBhOtOHQXgFriYPMmS6YPWoYcAcsXVqFlM1v3Qc7deb2b3
+
+### ===
+GET http://192.168.18.100:8000/api/saving/product-type
+Content-Type: application/json
+Authorization: Bearer 219|qAKxOlvpXuREZupjpbACvzOTBUjNDc92c11IHviI3b9e9c28
+
+
+###
+GET http://192.168.8.143:8000/api/notification
+# Content-Type: application/json
+Authorization: Bearer 269|MVqhBU28S3M3Y26UOCU4hRL1CEQnux1Gt65LoDfy84e09d8a
+
+
+###
+GET http://192.168.18.100:8000/api/hehe
