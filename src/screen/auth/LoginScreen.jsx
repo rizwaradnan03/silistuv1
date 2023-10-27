@@ -45,6 +45,7 @@ const LoginScreen = ({ navigation }) => {
                 await AsyncStorage.setItem("ExpirationTime", JSON.stringify(decodedToken.exp))
                 await AsyncStorage.setItem("AccessToken", response.data.token)
                 await AsyncStorage.setItem("Username", decodedToken.name)
+                await AsyncStorage.setItem("Id", decodedToken.sub)
                 navigation.navigate('Home');
             } else {
                 Alert.alert('Login Failed', 'Invalid username or password. Please try again.');
@@ -88,7 +89,7 @@ const LoginScreen = ({ navigation }) => {
                                 secureTextEntry
                             />
                             {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
-                            <Button onPress={handleSubmit} style={styles.buttonSubmit} title="Submit" />
+                            <Button color="purple" onPress={handleSubmit} style={styles.buttonSubmit} title="Submit" />
                         </View>
                     )}
                 </Formik>
@@ -133,10 +134,6 @@ const styles = StyleSheet.create({
         color: 'red',
         marginBottom: 10,
     },
-    buttonSubmit: {
-        backgroundColor: 'purple',
-        color: 'white'
-    }
 });
 
 export default LoginScreen;
