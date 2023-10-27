@@ -134,7 +134,8 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     buttonSubmit: {
-        backgroundColor: 'blue'
+        backgroundColor: 'purple',
+        color: 'white'
     }
 });
 

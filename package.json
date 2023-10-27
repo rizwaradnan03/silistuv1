@@ -1,5 +1,5 @@
 {
-  "name": "dotscustomerv2",
+  "name": "silistuv1",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -44,7 +44,8 @@
     "react-native-table-component": "^1.2.2",
     "react-test-renderer": "^17.0.2",
     "terbilang-js": "^1.0.1",
-    "yup": "^1.3.2"
+    "yup": "^1.3.2",
+    "react-native-web": "~0.19.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
