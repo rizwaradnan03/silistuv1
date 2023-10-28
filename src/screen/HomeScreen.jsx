@@ -9,10 +9,14 @@ import PengantarIlmuKomputerScene from '../scene/PengantarIlmuKomputerScene';
 import BahasaInggrisScene from '../scene/BahasaInggrisScene';
 import PendidikanKewargaNegaraanScene from '../scene/PendidikanKewargaNegaraanScene';
 import FisikaScene from '../scene/FisikaScene';
-import { findByIdIsNotCompletedMatematika } from '../Api/TaskEntryApi';
+import { findByIdIsNotCompletedAlgoritmaDanPemrograman, findByIdIsNotCompletedBahasaInggris, findByIdIsNotCompletedLogikaInformatika, findByIdIsNotCompletedMatematika } from '../Api/TaskEntryApi';
+import AlgoritmaDanPemrograman from '../scene/AlgoritmaDanPemrogramanScene';
 
 const HomeScreen = () => {
   const [isNotCompletedMatematika, setIsNotCompletedMatematika] = useState([])
+  const [isNotCompletedLogikaInformatika, setIsNotCompletedLogikaInformatika] = useState([])
+  const [isNotCompletedAlgoritmaDanPemrograman, setIsNotCompletedAlgoritmaDanPemrograman] = useState([])
+  const [isNotCompletedBahasaInggris, setIsNotCompletedBahasaInggris] = useState([])
 
   const layout = useWindowDimensions();
   const [index, setIndex] = useState(0);
@@ -35,11 +39,13 @@ const HomeScreen = () => {
       case 'matematika':
         return <MatematikaScene data={isNotCompletedMatematika} refetchData={refetchData} />;
       case 'logikainformatika':
-        return <LogikaInformatikaScene />;
+        return <LogikaInformatikaScene data={isNotCompletedLogikaInformatika} refetchData={refetchData} />;
       case 'pengantarilmukomputer':
         return <PengantarIlmuKomputerScene />;
+      case 'algoritmadanpemrograman':
+        return <AlgoritmaDanPemrograman data={isNotCompletedAlgoritmaDanPemrograman} refetchData={refetchData} />;
       case 'bahasainggris':
-        return <BahasaInggrisScene />
+        return <BahasaInggrisScene data={isNotCompletedBahasaInggris} refetchData={refetchData} />
       case 'pendidikankewarganegaraan':
         return <PendidikanKewargaNegaraanScene />
       case 'fisika':
@@ -61,14 +67,32 @@ const HomeScreen = () => {
 
     const fetchMatematika = async (token, id) => {
       const response = await findByIdIsNotCompletedMatematika(token,id)
-      console.log('hayzzzzzzzzzzzz', response.data.response.data)
+      // console.log('hayzzzzzzzzzzzz', response.data.response.data)
       setIsNotCompletedMatematika(response.data.response.data)
+    }
+
+    const fetchLogikaInformatika = async (token,id) => {
+      const response = await findByIdIsNotCompletedLogikaInformatika(token,id)
+      setIsNotCompletedLogikaInformatika(response.data.response.data)
+    }
+
+    const fetchAlgoritmaDanPemrograman = async (token,id) => {
+      const response = await findByIdIsNotCompletedAlgoritmaDanPemrograman(token,id)
+      setIsNotCompletedAlgoritmaDanPemrograman(response.data.response.data)
+    }
+
+    const fetchBahasaInggris = async (token,id) => {
+      const response = await findByIdIsNotCompletedBahasaInggris(token,id)
+      setIsNotCompletedBahasaInggris(response.data.response.data)
     }
 
     const fetchData = async () => {
       const token = await AsyncStorage.getItem("AccessToken")
       const id = await AsyncStorage.getItem("Id")
       await fetchMatematika(token, id)
+      await fetchLogikaInformatika(token,id)
+      await fetchAlgoritmaDanPemrograman(token,id)
+      await fetchBahasaInggris(token,id)
     }
 
     useEffect(() => {

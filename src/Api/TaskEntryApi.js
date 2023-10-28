@@ -85,6 +85,20 @@ export const findByIdIsNotCompletedBahasaInggris = async (token,id) => {
     }
 }
 
+export const findByIdIsNotCompletedAlgoritmaDanPemrograman = async (token,id) => {
+    try {
+        const result = await ApiManager(`/task-entries/not-completed-algoritma-dan-pemrograman/${id}`,{
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+
+        return result
+    } catch (error) {
+        console.log('Error While Find By Id Logika Informatika ', error)
+    }
+}
+
 export const findByIdTaskEntry = async (token, id) => {
     try {
         const result = await ApiManager(`/task-entries/${id}`, {
