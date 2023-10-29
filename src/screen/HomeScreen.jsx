@@ -9,7 +9,7 @@ import PengantarIlmuKomputerScene from '../scene/PengantarIlmuKomputerScene';
 import BahasaInggrisScene from '../scene/BahasaInggrisScene';
 import PendidikanKewargaNegaraanScene from '../scene/PendidikanKewargaNegaraanScene';
 import FisikaScene from '../scene/FisikaScene';
-import { findByIdIsNotCompletedAlgoritmaDanPemrograman, findByIdIsNotCompletedBahasaInggris, findByIdIsNotCompletedLogikaInformatika, findByIdIsNotCompletedMatematika } from '../Api/TaskEntryApi';
+import { findByIdIsNotCompletedAlgoritmaDanPemrograman, findByIdIsNotCompletedBahasaInggris, findByIdIsNotCompletedFisika, findByIdIsNotCompletedLogikaInformatika, findByIdIsNotCompletedMatematika, findByIdIsNotCompletedPendidikanKewargaNegaraan, findByIdIsNotCompletedPengantarIlmuKomputer } from '../Api/TaskEntryApi';
 import AlgoritmaDanPemrograman from '../scene/AlgoritmaDanPemrogramanScene';
 
 const HomeScreen = () => {
@@ -17,6 +17,9 @@ const HomeScreen = () => {
   const [isNotCompletedLogikaInformatika, setIsNotCompletedLogikaInformatika] = useState([])
   const [isNotCompletedAlgoritmaDanPemrograman, setIsNotCompletedAlgoritmaDanPemrograman] = useState([])
   const [isNotCompletedBahasaInggris, setIsNotCompletedBahasaInggris] = useState([])
+  const [isNotCompletedPengantarIlmuKomputer, setIsNotCompletedPengantarIlmuKomputer] = useState([])
+  const [isNotCompletedPendidikanKewargaNegaraan, setIsNotCompletedPendidikanKewargaNegaraan] = useState([])
+  const [isNotCompletedFisika, setIsNotCompletedFisika] = useState([])
 
   const layout = useWindowDimensions();
   const [index, setIndex] = useState(0);
@@ -41,15 +44,15 @@ const HomeScreen = () => {
       case 'logikainformatika':
         return <LogikaInformatikaScene data={isNotCompletedLogikaInformatika} refetchData={refetchData} />;
       case 'pengantarilmukomputer':
-        return <PengantarIlmuKomputerScene />;
+        return <PengantarIlmuKomputerScene data={isNotCompletedPengantarIlmuKomputer} refetchData={refetchData} />;
       case 'algoritmadanpemrograman':
         return <AlgoritmaDanPemrograman data={isNotCompletedAlgoritmaDanPemrograman} refetchData={refetchData} />;
       case 'bahasainggris':
         return <BahasaInggrisScene data={isNotCompletedBahasaInggris} refetchData={refetchData} />
       case 'pendidikankewarganegaraan':
-        return <PendidikanKewargaNegaraanScene />
+        return <PendidikanKewargaNegaraanScene data={isNotCompletedPendidikanKewargaNegaraan} refetchData={refetchData} />
       case 'fisika':
-        return <FisikaScene />
+        return <FisikaScene data={isNotCompletedFisika} refetchData={refetchData} />
       default:
         return null;
     }
@@ -67,7 +70,6 @@ const HomeScreen = () => {
 
     const fetchMatematika = async (token, id) => {
       const response = await findByIdIsNotCompletedMatematika(token,id)
-      // console.log('hayzzzzzzzzzzzz', response.data.response.data)
       setIsNotCompletedMatematika(response.data.response.data)
     }
 
@@ -86,6 +88,21 @@ const HomeScreen = () => {
       setIsNotCompletedBahasaInggris(response.data.response.data)
     }
 
+    const fetchPengantarIlmuKomputer = async (token,id) => {
+      const response = await findByIdIsNotCompletedPengantarIlmuKomputer(token,id)
+      setIsNotCompletedPengantarIlmuKomputer(response.data.response.data)
+    }
+
+    const fetchPendidikanKewargaNegaraan = async (token,id) => {
+      const response = await findByIdIsNotCompletedPendidikanKewargaNegaraan(token,id)
+      setIsNotCompletedPendidikanKewargaNegaraan(response.data.response.data)
+    }
+
+    const fetchFisika = async (token,id) => {
+      const response = await findByIdIsNotCompletedFisika(token,id)
+      setIsNotCompletedFisika(response.data.response.data)
+    }
+
     const fetchData = async () => {
       const token = await AsyncStorage.getItem("AccessToken")
       const id = await AsyncStorage.getItem("Id")
@@ -93,6 +110,9 @@ const HomeScreen = () => {
       await fetchLogikaInformatika(token,id)
       await fetchAlgoritmaDanPemrograman(token,id)
       await fetchBahasaInggris(token,id)
+      await fetchPengantarIlmuKomputer(token,id)
+      await fetchPendidikanKewargaNegaraan(token,id)
+      await fetchFisika(token,id)
     }
 
     useEffect(() => {

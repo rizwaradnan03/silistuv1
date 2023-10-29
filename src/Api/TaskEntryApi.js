@@ -33,6 +33,7 @@ export const findAllIsNotCompletedTaskEntry = async (token) => {
 export const findByIdIsNotCompletedMatematika = async (token,id) => {
     try {
         const result = await ApiManager(`/task-entries/not-completed-matematika/${id}`,{
+            method: 'GET',
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -47,6 +48,7 @@ export const findByIdIsNotCompletedMatematika = async (token,id) => {
 export const findByIdIsNotCompletedLogikaInformatika = async (token,id) => {
     try {
         const result = await ApiManager(`/task-entries/not-completed-logika-informatika/${id}`,{
+            method: 'GET',
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -61,6 +63,7 @@ export const findByIdIsNotCompletedLogikaInformatika = async (token,id) => {
 export const findByIdIsNotCompletedPengantarIlmuKomputer = async (token,id) => {
     try {
         const result = await ApiManager(`/task-entries/not-completed-pengantar-ilmu-komputer/${id}`,{
+            method: 'GET',
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -74,6 +77,7 @@ export const findByIdIsNotCompletedPengantarIlmuKomputer = async (token,id) => {
 export const findByIdIsNotCompletedBahasaInggris = async (token,id) => {
     try {
         const result = await ApiManager(`/task-entries/not-completed-bahasa-inggris/${id}`,{
+            method: 'GET',
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -88,6 +92,37 @@ export const findByIdIsNotCompletedBahasaInggris = async (token,id) => {
 export const findByIdIsNotCompletedAlgoritmaDanPemrograman = async (token,id) => {
     try {
         const result = await ApiManager(`/task-entries/not-completed-algoritma-dan-pemrograman/${id}`,{
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+
+        return result
+    } catch (error) {
+        console.log('Error While Find By Id Logika Informatika ', error)
+    }
+}
+
+export const findByIdIsNotCompletedPendidikanKewargaNegaraan = async (token,id) => {
+    try {
+        const result = await ApiManager(`/task-entries/not-completed-pendidikan-kewarganegaraan/${id}`,{
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+
+        return result
+    } catch (error) {
+        console.log('Error While Find By Id Logika Informatika ', error)
+    }
+}
+
+export const findByIdIsNotCompletedFisika = async (token,id) => {
+    try {
+        const result = await ApiManager(`/task-entries/not-completed-fisika/${id}`,{
+            method: 'GET',
             headers: {
                 Authorization: `Bearer ${token}`
             }

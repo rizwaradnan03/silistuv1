@@ -21,16 +21,7 @@ const LoginScreen = ({ navigation }) => {
         if (!token) {
             navigation.navigate("Login");
         } else {
-            const tokenPayload = jwt.decode(token);
-            const tokenExpirationTime = tokenPayload.exp * 1000;
-
-            if (currentTime > tokenExpirationTime) {
-                console.log('Token kedaluwarsa');
-                navigation.navigate("Login");
-            } else {
-                console.log('Token valid');
-                navigation.navigate("Home");
-            }
+            navigation.navigate("Home");
         }
     };
 
@@ -42,10 +33,11 @@ const LoginScreen = ({ navigation }) => {
             if (response.status === 201) {
                 const decodedToken = jwtDecode(response.data.token);
 
+                await AsyncStorage.setItem("Id", decodedToken.sub)
                 await AsyncStorage.setItem("ExpirationTime", JSON.stringify(decodedToken.exp))
                 await AsyncStorage.setItem("AccessToken", response.data.token)
                 await AsyncStorage.setItem("Username", decodedToken.name)
-                await AsyncStorage.setItem("Id", decodedToken.sub)
+                await AsyncStorage.setItem("Role", decodedToken.role)
                 navigation.navigate('Home');
             } else {
                 Alert.alert('Login Failed', 'Invalid username or password. Please try again.');
@@ -68,7 +60,7 @@ const LoginScreen = ({ navigation }) => {
                 <Formik
                     initialValues={{ username: '', password: '' }}
                     validationSchema={loginValidationSchema}
-                    onSubmit={(values) => handleSubmit(values)} // Perubahan disini
+                    onSubmit={(values) => handleSubmit(values)}
                 >
                     {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
                         <View style={styles.form}>

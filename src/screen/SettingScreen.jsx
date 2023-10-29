@@ -4,7 +4,7 @@ import { View, StyleSheet } from 'react-native'
 import { Button, Card, Text } from 'react-native-paper'
 import Modal from 'react-native-modal';
 
-const SettingScreen = ({ navigation }) => {
+const SettingScreen = ({ navigation} ) => {
     const [isModalVisible, setModalVisible] = useState(false);
 
     const handleConfirmLogOut = async () => {
@@ -17,7 +17,8 @@ const SettingScreen = ({ navigation }) => {
 
     const handleLogOut = async () => {
         try {
-            await AsyncStorage.removeItem("AccessToken")
+            const keys = await AsyncStorage.getAllKeys()
+            await AsyncStorage.multiRemove(keys)
             navigation.navigate("Login")
         } catch (error) {
             console.log(error)
@@ -37,12 +38,12 @@ const SettingScreen = ({ navigation }) => {
             </View>
             <Modal isVisible={isModalVisible}>
                 <View style={styles.modalContent}>
-                    <Text>Anda Yakin Untuk Logout?</Text>
-                    <Button onPress={() => setModalVisible(false)}>
-                        <Text>Tidak</Text>
+                    <Text style={styles.modalText}>Anda Yakin Untuk Logout?</Text>
+                    <Button style={styles.modalText} onPress={() => setModalVisible(false)}>
+                        <Text style={styles.modalText}>Tidak</Text>
                     </Button>
-                    <Button onPress={() => handleLogOut()}>
-                        <Text>Ya</Text>
+                    <Button style={styles.modalText} onPress={() => handleLogOut()}>
+                        <Text style={styles.modalText}>Ya</Text>
                     </Button>
                 </View>
             </Modal>
@@ -53,19 +54,24 @@ const SettingScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         padding: 20,
-        marginTop: 40
+        marginTop: 40,
+        color: 'white'
     },
     buttonLogOut: {
         width: "30%"
     },
     buttonTextLogout: {
-        textAlign: 'left'
+        textAlign: 'left',
+        color: 'black'
     },
     modalContent: {
         backgroundColor: 'white',
         padding: 20,
         borderRadius: 10,
         alignItems: 'center',
+    },
+    modalText: {
+        color: 'black'
     },
 })
 
