@@ -54,7 +54,7 @@ const LoginScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.imageContainer}>
-                <Image source={require('../../../assets/logounpak.png')} style={styles.image} />
+                <Image source={require('../../../assets/foto-kita.jpeg')} style={styles.image} />
             </View>
             <View style={styles.formContainer}>
                 <Formik
